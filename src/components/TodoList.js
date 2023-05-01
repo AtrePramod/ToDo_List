@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import AddNewTodo from './AddNewTodo';
+
 const TodoList = () => {
     const [todos, setTodos] = useState([
         { text: 'Pay bills', id: 1 },
@@ -7,12 +8,18 @@ const TodoList = () => {
         { text: 'Feed the Dog', id: 3 }
     ]);
 
+    const [count, setCount] = useState(0);
+
     const addTodo = (text) => {
         setTodos([
             ...todos,
             { text, id: Math.random() }
         ]);
-    }
+    };
+
+    useState(() => {
+        console.log('use effect', todos);
+    });
 
     return (
         <div>
@@ -23,7 +30,7 @@ const TodoList = () => {
                     )
                 })}
             </ul>
-            {/* <button onClick={addTodo}>Add a Todo</button> */}
+
             <AddNewTodo addTodo={addTodo} />
         </div>
     );
